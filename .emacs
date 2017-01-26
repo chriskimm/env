@@ -1,11 +1,11 @@
 ;; add custom locations to the load-path
 (add-to-list 'load-path "~/software/emacs")
-(add-to-list 'load-path "~/.emacs.d/")
+(add-to-list 'load-path "~/.emacs.d/lisp")
 
 ;; initial window size
 (setq default-frame-alist
           '((top . 2) (left . 2)
-            (width . 120) (height . 50)))
+            (width . 120) (height . 60)))
 
 ;; don't make backup files
 (setq make-backup-files nil)
