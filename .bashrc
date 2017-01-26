@@ -75,34 +75,9 @@ fi
 # have svn use emacs as editor
 export SVN_EDITOR=emacs
 
-# OPOWER stuff
-export workspace=/Users/chris.kimm/opower/pose
-export R_HOME=/Library/Frameworks/R.framework/Versions/2.11/Resources/
-export SSH_TUNNEL_REMOTE_PORT=5495
-export POSE_USER=chris.kimm
-export ami_job_prefix=real
-export DINO_MAIN=$workspace/dino
-export CLIENT_MAIN=$R/main/clients
-# export MYSQL_PASSWORD=tRV0CfHk
-export MYSQL_PASSWORD=ihooyohn
-export MAVEN_OPTS="-Xms512m -Xmx1024m -XX:PermSize=256m -XX:MaxPermSize=512m"
-source ~/opower/pose/opower.bash/opower.bash
-# source ~/pose.bash
-# source ~/posedc6.bash
-alias jjdb='mysql -Djabberjaw_development'
-
 # mvn aliases
 alias mci='mvn clean install'
 alias mcint='mvn -Dmaven.test.skip clean install'
-
-# misc aliases
-alias fe='/usr/bin/emacs `grep -lRs "FAIL" ./target/surefire-reports | head -n 1`'
-alias ws='cd $workspace'
-alias update='svn up $workspace/core $workspace/ei $workspace/report $workspace/content $workspace/qa $workspace/infrastructure $workspace/pose-parent'
-alias myrestart='sudo launchctl unload /Library/LaunchDaemons/com.opower.mysqld.plist ; sudo launchctl load /Library/LaunchDaemons/com.opower.mysqld.plist'
-alias nginxstop='sudo kill `cat /opt/local/var/run/nginx/nginx.pid`'
-alias updatedb='sudo /usr/libexec/locate.updatedb'
-alias be='bundle exec'
 
 # git aliases
 alias g='git'

@@ -1,0 +1,22 @@
+[user]
+    name = chris.kimm 
+    email = chris.kimm@gmail.com
+
+[core]
+    excludes = /Users/chriskimm/.gitignore
+
+[color]
+    ui = auto
+
+[alias]
+    b  = branch
+    ba = branch -a
+    ci = commit
+    co = checkout
+    l  = log
+    lg = log --pretty=format:'%C(yellow)%h%Creset %C(cyan)%an%Creset %s %Cgreen(%cr) %C(red)%d' --graph
+    rb = rebase
+    s  = status -sb
+
+[push]
+	default = tracking
