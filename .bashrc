@@ -87,14 +87,16 @@ alias gs='git s'
 alias gco='git co'
 
 export PATH=$PATH:/usr/local/mysql/bin/
+export PATH=$PATH:/usr/local/bin/
 export PATH=$PATH:/usr/local/sbin/
-export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home
-export NUTCH_JAVA_HOME=$JAVA_HOME
+
+#export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home
+#export NUTCH_JAVA_HOME=$JAVA_HOME
 
 # Hadoop, hadoop-ec2 stuff
-export HADOOP_HOME=~/software/hadoop-0.21.0
-export PATH=$HADOOP_HOME/bin:$PATH
-export PATH=$HADOOP_HOME/common/src/contrib/ec2/bin:$PATH
+#export HADOOP_HOME=~/software/hadoop-0.21.0
+#export PATH=$HADOOP_HOME/bin:$PATH
+#export PATH=$HADOOP_HOME/common/src/contrib/ec2/bin:$PATH
 
 # Amazon Web Services Stuff
 source ~/.aws
@@ -102,7 +104,7 @@ source ~/.aws
 # Add my bin dir to path
 export PATH=~/bin:$PATH
 
-source /usr/local/git/contrib/completion/git-completion.bash
+source ~/env/.git-completion.bash
 # I need these in order to make work git-completion work with git aliases set above
 complete -o bashdefault -o default -o nospace -F _git g 2>/dev/null \
 	|| complete -o default -o nospace -F _git g

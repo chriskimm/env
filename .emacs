@@ -1,6 +1,18 @@
 ;; add custom locations to the load-path
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (add-to-list 'load-path "~/software/emacs")
 (add-to-list 'load-path "~/.emacs.d/lisp")
+(add-to-list 'exec-path "/Users/chriskimm/bin")
+(add-to-list 'exec-path "/usr/local/bin")
+
+(add-to-list 'package-archives
+             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 
 ;; initial window size
 (setq default-frame-alist
@@ -24,15 +36,21 @@
 ;; maximum colors
 (setq font-lock-maximum-decoration t)
 
+;; Clojure setup
+(unless (package-installed-p 'clojure-mode)
+  (package-install 'clojure-mode))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(inferior-lisp-program "java -cp ~/software/clojure-1.1.0/clojure.jar clojure.main")
  '(markdown-command-needs-filename t)
+ '(package-selected-packages (quote (cider clojure-mode)))
  '(quack-default-program "~/software/Racket_5_0_1/bin/racket")
- '(quack-programs (quote ("~/software/Racket_5_0_1/bin/racket" "bigloo" "csi" "csi -hygienic" "gosh" "gracket" "gsi" "gsi ~~/syntax-case.scm -" "guile" "kawa" "mit-scheme" "racket" "racket -il typed/racket" "rs" "scheme" "scheme48" "scsh" "sisc" "stklos" "sxi")))
+ '(quack-programs
+   (quote
+    ("~/software/Racket_5_0_1/bin/racket" "bigloo" "csi" "csi -hygienic" "gosh" "gracket" "gsi" "gsi ~~/syntax-case.scm -" "guile" "kawa" "mit-scheme" "racket" "racket -il typed/racket" "rs" "scheme" "scheme48" "scsh" "sisc" "stklos" "sxi")))
  '(scheme-program-name "racket")
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
