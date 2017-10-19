@@ -7,12 +7,19 @@
 (package-initialize)
 
 (add-to-list 'load-path "~/software/emacs")
-(add-to-list 'load-path "~/.emacs.d/lisp")
+(add-to-list 'load-path "~/.emacs.d/elisp")
 (add-to-list 'exec-path "/Users/chriskimm/bin")
+(add-to-list 'exec-path "/Users/chriskimm/go/bin") ;; I think this should be somewhere else
 (add-to-list 'exec-path "/usr/local/bin")
+(add-to-list 'exec-path "/usr/local/go/bin")
+
 
 (add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives
              '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/"))
 
 ;; initial window size
 (setq default-frame-alist
@@ -39,6 +46,10 @@
 ;; Clojure setup
 (unless (package-installed-p 'clojure-mode)
   (package-install 'clojure-mode))
+(add-hook 'clojure-mode-hook 'paredit-mode)
+(add-hook 'clojurescript-mode-hook 'paredit-mode)
+
+(setq cider-repl-display-help-banner nil)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -46,7 +57,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(markdown-command-needs-filename t)
- '(package-selected-packages (quote (cider clojure-mode)))
+ '(package-selected-packages
+   (quote
+    (exec-path-from-shell protobuf-mode go-mode paredit cider clojure-mode)))
  '(quack-default-program "~/software/Racket_5_0_1/bin/racket")
  '(quack-programs
    (quote
@@ -71,6 +84,7 @@
 (global-set-key "\C-^" 'next-error)
 (global-set-key "\C-\M-g" 'goto-line)
 (global-set-key "\C-c\C-c" 'comment-or-uncomment-region)
+(global-set-key "\M-g\M-f" 'toggle-frame-fullscreen)
 
 ;; use spaces instead of tabs
 (setq-default indent-tabs-mode nil)
@@ -106,3 +120,12 @@
       mac-command-modifier 'meta
       mac-option-modifier 'none)
 
+;; Golang
+(setq-default tab-width 4)
+(require 'go-mode)
+;; Run gofmt before saving golang files
+(add-hook 'before-save-hook #'gofmt-before-save)
+
+(ac-config-default)
+(require 'auto-complete-config)
+(require 'go-autocomplete)

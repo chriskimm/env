@@ -44,11 +44,13 @@ fi
 
 # some more ls aliases
 alias ls='ls -G'
-alias ll='ls -l'
 alias la='ls -A'
+alias ll='la -lh'
 alias l='ls -CF'
-# alias mysql='/usr/local/mysql/bin/mysql'
+
+# other aliases
 alias h='history'
+alias dk='docker'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -90,16 +92,8 @@ export PATH=$PATH:/usr/local/mysql/bin/
 export PATH=$PATH:/usr/local/bin/
 export PATH=$PATH:/usr/local/sbin/
 
-#export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home
-#export NUTCH_JAVA_HOME=$JAVA_HOME
-
-# Hadoop, hadoop-ec2 stuff
-#export HADOOP_HOME=~/software/hadoop-0.21.0
-#export PATH=$HADOOP_HOME/bin:$PATH
-#export PATH=$HADOOP_HOME/common/src/contrib/ec2/bin:$PATH
-
 # Amazon Web Services Stuff
-source ~/.aws
+# source ~/.aws
 
 # Add my bin dir to path
 export PATH=~/bin:$PATH
@@ -142,8 +136,11 @@ export PATH=$HOME/Library/Haskell/bin:$PATH
 # add redis-cli to path
 export PATH=/usr/local/redis/bin:$PATH
 
-# ImageMagik support
-export MAGICK_HOME=/Users/chris.kimm/software/ImageMagick-6.8.5
-export PATH=$MAGICK_HOME/bin:$PATH
-export DYLD_LIBRARY_PATH=$MAGICK_HOME/lib/
-export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
+# add protoc to path
+export PATH=/Users/chriskimm/software/protoc/bin:$PATH
+
+# Go support
+export GOROOT=/usr/local/go
+export GOPATH=/Users/chriskimm/go
+export PATH=$PATH:$GOROOT/bin
+export PATH=$PATH:$GOPATH/bin
