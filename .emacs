@@ -12,14 +12,15 @@
 (add-to-list 'exec-path "/Users/chriskimm/go/bin") ;; I think this should be somewhere else
 (add-to-list 'exec-path "/usr/local/bin")
 (add-to-list 'exec-path "/usr/local/go/bin")
+(add-to-list 'exec-path "/usr/local/go/bin")
 
 
 (add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+             '("melpa" . "https://melpa.org/packages/") t)
 (add-to-list 'package-archives
              '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/"))
+;;(add-to-list 'package-archives
+;;             '("marmalade" . "http://marmalade-repo.org/packages/"))
 
 ;; initial window size
 (setq default-frame-alist
@@ -59,7 +60,7 @@
  '(markdown-command-needs-filename t)
  '(package-selected-packages
    (quote
-    (exec-path-from-shell protobuf-mode go-mode paredit cider clojure-mode)))
+    (## utop rjsx-mode exec-path-from-shell protobuf-mode go-mode paredit cider clojure-mode)))
  '(quack-default-program "~/software/Racket_5_0_1/bin/racket")
  '(quack-programs
    (quote
@@ -129,3 +130,40 @@
 (ac-config-default)
 (require 'auto-complete-config)
 (require 'go-autocomplete)
+
+;; ocaml support: opam path
+(add-to-list 'exec-path "/Users/chriskimm/.opam/4.07.1/bin")
+
+;; ocaml support: tuareg
+(load "/Users/chriskimm/.opam/4.07.1/share/emacs/site-lisp/tuareg-site-file")
+
+;; ocaml support: merlin
+(let ((opam-share (ignore-errors (car (process-lines "opam" "config" "var" "share")))))
+  (when (and opam-share (file-directory-p opam-share))
+    ;; Register Merlin
+    (add-to-list 'load-path (expand-file-name "emacs/site-lisp" opam-share))
+    (autoload 'merlin-mode "merlin" nil t nil)
+    ;; Automatically start it in OCaml buffers
+    (add-hook 'tuareg-mode-hook 'merlin-mode t)
+    (add-hook 'caml-mode-hook 'merlin-mode t)
+    ;; Use opam switch to lookup ocamlmerlin binary
+    (setq merlin-command 'opam)))
+
+;; ocaml support: utop
+;; Add the opam lisp dir to the emacs load path
+(add-to-list
+ 'load-path
+ (replace-regexp-in-string
+  "\n" "/Users/chriskimm/.opam/4.07.1/share/emacs/site-lisp"
+  (shell-command-to-string "opam config var prefix")))
+
+;; Automatically load utop.el
+(autoload 'utop "utop" "Toplevel for OCaml" t)
+
+;; Use the opam installed utop
+(setq utop-command "opam config exec -- utop -emacs")
+
+(setenv "CAML_LD_LIBRARY_PATH" "/Users/chriskimm/.opam/4.07.1/lib/stublibs")
+;; ## added by OPAM user-setup for emacs / base ## 56ab50dc8996d2bb95e7856a6eddb17b ## you can edit, but keep this line
+(require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
+;; ## end of OPAM user-setup addition for emacs / base ## keep this line

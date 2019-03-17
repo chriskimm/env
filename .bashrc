@@ -114,9 +114,6 @@ PS1="\w \[\033[0;32m\]\$(parse_git_branch_and_add_brackets) \[\033[0m\]\$ "
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 export PATH=$HOME/local/bin:$PATH
 
-# cronkite stuff
-alias cr='cd /Users/chris.kimm/bishop/dev/cronkite/cronkite-web'
-
 # Node.js
 export PATH=$HOME/local/node/bin:$PATH
 
@@ -139,8 +136,23 @@ export PATH=/usr/local/redis/bin:$PATH
 # add protoc to path
 export PATH=/Users/chriskimm/software/protoc/bin:$PATH
 
+# add maven to path
+export PATH=/Users/chriskimm/software/apache-maven-3.6.0/bin:$PATH
+
 # Go support
 export GOROOT=/usr/local/go
 export GOPATH=/Users/chriskimm/go
 export PATH=$PATH:$GOROOT/bin
 export PATH=$PATH:$GOPATH/bin
+
+# Postgresql
+export PATH=$PATH:/Library/PostgreSQL/10/bin
+
+# Project-based aliases
+alias mmcd='cd ~/go/src/github.com/chriskimm/majesticmouse'
+alias mmpg='psql -h localhost -U postgres --password'
+
+# ocaml support
+eval `opam config env`
+
+export CAML_LD_LIBRARY_PATH=/Users/chriskimm/.opam/4.07.1/lib/stublibs
