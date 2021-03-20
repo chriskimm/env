@@ -154,5 +154,15 @@ alias mmpg='psql -h localhost -U postgres --password'
 
 # ocaml support
 eval `opam config env`
-
 export CAML_LD_LIBRARY_PATH=/Users/chriskimm/.opam/4.07.1/lib/stublibs
+
+# llvm support
+export PATH=$PATH:/Users/chriskimm/bishop/llvm/llvm-project/build/bin
+
+# some stuff that brew suggested I install:
+#
+# readline is keg-only, which means it was not symlinked into /usr/local,
+# because macOS provides BSD libedit.
+export LDFLAGS="-L/usr/local/opt/readline/lib"
+export CPPFLAGS="-I/usr/local/opt/readline/include"
+export PKG_CONFIG_PATH="/usr/local/opt/readline/lib/pkgconfig"

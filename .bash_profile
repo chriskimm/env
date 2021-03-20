@@ -15,3 +15,4 @@ if [ -f '/Users/chriskimm/software/google-cloud-sdk/completion.bash.inc' ]; then
 
 # opam configuration
 test -r /Users/chriskimm/.opam/opam-init/init.sh && . /Users/chriskimm/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+
